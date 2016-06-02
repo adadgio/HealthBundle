@@ -1,0 +1,19 @@
+{
+    "name": "adadgio/health-bundle",
+    "type": "library",
+    "description": "Adadgio HealthBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Romain BRUCKERT",
+            "email": "romain.bruckert.esc@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-0": { "Adadgio\\HealthBundle\\": "" },
+        "psr-4": { "Adadgio\\HealthBundle\\": "" }
+    }
+}
