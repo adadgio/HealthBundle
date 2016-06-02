@@ -4,7 +4,10 @@ namespace Adadgio\HealthBundle;
 
 /**
  * An object representing the official OMS CIM-10
- * classifcation. Also known as ICD-10
+ * classification. Also known as ICD-10.
+ * 
+ * Official source {@link http://apps.who.int/classifications/icd10/browse/2008/fr#/XXII}
+ * CSV source example {@link http://www.santepublique.eu/telecharger-cim10-francai/}
  */
 class CIM10Code
 {
