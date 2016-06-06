@@ -45,7 +45,7 @@ class DataSource
 
         return (int) end($vs);
     }
-    
+
     /**
      * Get path.
      *
@@ -55,7 +55,7 @@ class DataSource
     {
         return $this->path;
     }
-
+    
     /**
      * Get source contents.
      *
@@ -78,6 +78,10 @@ class DataSource
         $this->path = sprintf($this->basePath,
             $namespace, $year, $format, $lang, $format
         );
+
+        if (!is_file($this->path)) {
+            throw new \Exception(sprintf('Requested data source "%s" does not exist at path "%s"', basename($this->path), $this->path));
+        }
 
         return $this;
     }
