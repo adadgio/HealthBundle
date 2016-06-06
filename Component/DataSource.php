@@ -2,7 +2,7 @@
 
 namespace Adadgio\HealthBundle\Component;
 
-class RemoteData
+class DataSource
 {
     /**
      * @var string Base resource path
