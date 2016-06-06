@@ -48,7 +48,7 @@ class CIM10ClamParser
             $tree = new CIM10Tree($this->items);
             $this->items = $tree->getTree();
         }
-        
+
         if ($json === static::JSON) {
             return json_encode($this->items);
         } else {
