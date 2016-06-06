@@ -1,0 +1,2 @@
+adadgio_health.access:
+    class: Adadgio\HealthBundle\Component\DataAccess
