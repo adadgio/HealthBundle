@@ -2,7 +2,7 @@
 
 namespace Adadgio\HealthBundle\Component;
 
-class DataAccess
+class RemoteData
 {
     /**
      * @var string Base resource path
@@ -13,7 +13,7 @@ class DataAccess
      * @var string Resource final remote path
      */
     private $path;
-
+    
     /**
      * var string Cache directory
      */
