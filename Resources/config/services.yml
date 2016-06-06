@@ -1,2 +1,5 @@
-adadgio_health.data_source:
-    class: Adadgio\HealthBundle\Component\DataSource
+services:
+    adadgio_health.data_source:
+        class: Adadgio\HealthBundle\Component\DataSource
+        arguments:
+            - "%kernel.root_dir%"

@@ -17,29 +17,35 @@ class DataSource
     /**
      * var string Cache directory
      */
-    private $cacheDir;
+    //private $cacheDir;
+
+    /**
+     * @var string Symfiny version
+     */
+    //protected $sfVersion;
 
     /**
      * Constructor.
      */
-    public function __construct()
+    public function __construct($kernelRootDir)
     {
+        //$this->cacheDir = null;
+        //$this->sfVersion = \Symfony\Component\HttpKernel\Kernel::VERSION;
         $this->basePath = __DIR__.'/../Resources/%s/%s/%s/data_%s.%s';
     }
 
     /**
-     * Set cache dir. Activates the cache.
+     * Get main version number.
      *
-     * @param string Server directory full path.
-     * @return \DataAccess
+     * @return integer Main release version number
      */
-    public function setCacheDir()
+    protected function firstVersionNumber()
     {
-        $this->cacheDir = rtrim($dir, '/');
+        $vs = explode('.', $this->sfVersion);
 
-        return $this;
+        return (int) end($vs);
     }
-
+    
     /**
      * Get path.
      *
@@ -57,23 +63,7 @@ class DataSource
      */
     public function getContents()
     {
-        $cachedFile = $this->cacheDir.'/'.basename($this->path);
-
-        if (null !== $this->cacheDir && is_file($cachedFile)) {
-            return file_get_contents($cachedFile);
-
-        } else {
-
-            $contents = file_get_contents($this->path);
-
-            if (null !== $contents) {
-                file_put_contents($cachedFile, $contents);
-            }
-
-            return $content;
-        }
-
-
+        return file_get_contents($this->path);
     }
 
     /**
