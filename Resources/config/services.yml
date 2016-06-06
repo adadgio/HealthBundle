@@ -1,2 +1,2 @@
-adadgio_health.remote_data:
-    class: Adadgio\HealthBundle\Component\RemoteData
+adadgio_health.data_source:
+    class: Adadgio\HealthBundle\Component\DataSource
