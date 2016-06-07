@@ -23,11 +23,45 @@ class CIM10ClamParser
         foreach ($crawler as $domElement) {
             // find node code
             $code = $domElement->getAttribute('code');
-            // find the node label
-            $label = $domElement->getElementsByTagName('Rubric')->item(0)->getElementsByTagName('Label')->item(0)->nodeValue;
 
-            // get parent code...
+            // find the node label <Rubric ... kind="preferred">
+            $rubricElements = $domElement->getElementsByTagName('Rubric');
+
+            $label = null;
+            $definition = null;
+            $inclusions = array();
+            
+            foreach ($rubricElements as $rubricNode) {
+                $kind = $rubricNode->getAttribute('kind');
+
+                if ($kind === 'preferred') {
+
+                    $labelNode = $rubricNode->getElementsByTagName('Label')->item(0);
+                    $label = $labelNode->nodeValue;
+
+                } else if ($kind === 'inclusion') {
+
+                    $fragmentNodes = $rubricNode->getElementsByTagName('Label');
+                    // <Fragment ...> tags do not always exist ! only when related to another code.
+                    // $fragA = $fragmentNodes->item(0)->nodeValue;
+                    // $fragB = $fragmentNodes->item(1)->nodeValue;
+                    $inclusions[] = array(
+                        'label' => $fragmentNodes->item(0)->nodeValue
+                    );
+
+                } else if ($kind === 'definition') {
+
+                    $definitionNodes = $rubricNode->getElementsByTagName('Label');
+                    $definition = $definitionNodes->item(0)->nodeValue;
+
+                } else {
+                    // unhandled kind...
+                }
+            }
+
+            // find parent code...
             $parentElement = $domElement->getElementsByTagName('SuperClass')->item(0);
+
             if (null !== $parentElement) {
                 $parent = $parentElement->getAttribute('code');
             } else {
@@ -35,9 +69,11 @@ class CIM10ClamParser
             }
 
             $this->items[$code] = array(
-                'code' => $code,
+                'code'   => $code,
                 'parent' => $parent,
-                'label' => $label,
+                'label'  => $label,
+                'inclusions' => $inclusions,
+                'definition' => $definition,
             );
         }
     }

@@ -8,7 +8,7 @@ class CIM10Tree
     {
         $this->tree = $this->map($items);
     }
-
+    
     public function getTree()
     {
         return $this->tree;
@@ -27,7 +27,7 @@ class CIM10Tree
 
             $tree[$k] = $item;
         }
-        
+
         // asort($tree);
         return array_values($tree);
     }
