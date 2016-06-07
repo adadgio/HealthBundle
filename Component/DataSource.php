@@ -33,7 +33,7 @@ class DataSource
         //$this->sfVersion = \Symfony\Component\HttpKernel\Kernel::VERSION;
         $this->basePath = __DIR__.'/../Resources/%s/%s/%s/data_%s.%s';
     }
-
+    
     /**
      * Get main version number.
      *
@@ -55,7 +55,7 @@ class DataSource
     {
         return $this->path;
     }
-    
+
     /**
      * Get source contents.
      *
