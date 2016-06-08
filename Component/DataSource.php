@@ -65,7 +65,7 @@ class DataSource
     {
         return file_get_contents($this->path);
     }
-    
+
     /**
      * Get source contents as an array.
      *

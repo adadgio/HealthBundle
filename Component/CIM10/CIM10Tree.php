@@ -8,7 +8,7 @@ class CIM10Tree
     {
         $this->tree = $this->map($items);
     }
-    
+
     public function getTree()
     {
         return $this->tree;
@@ -30,5 +30,22 @@ class CIM10Tree
 
         // asort($tree);
         return array_values($tree);
+    }
+
+    public function unmap(array $tree = array())
+    {
+        $items = array();
+
+        foreach ($tree as $k => $leaf) {
+
+            $children = $leaf['children'];
+            $leaf['count_children'] = count($children);
+            unset($leaf['children']);
+
+            $items[$k] = $leaf;
+            $items = array_merge($items, $this->unmap($children));
+        }
+        
+        return $items;
     }
 }
